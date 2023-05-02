@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"encoding/json"
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/mattn/go-sqlite3"
 	"io"
 	"net/http"
 	"time"
@@ -37,7 +37,7 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/goexpert")
+	db, err := sql.Open("sqlite3", "./db/cotations.db")
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Something went wrong: " + err.Error()))

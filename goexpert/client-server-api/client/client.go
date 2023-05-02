@@ -36,7 +36,7 @@ func main() {
 		panic(err)
 	}
 
-	f, err := os.Create("cotacao.txt")
+	f, err := os.OpenFile("cotacao.txt", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
 	if err != nil {
 		panic(err)
 	}
